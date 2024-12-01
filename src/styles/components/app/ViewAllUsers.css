@@ -1,0 +1,16 @@
+.ViewAllUsers {
+  @apply flex flex-col gap-10 w-fit justify-center items-center border-PrimaryBlack border-2 border-solid p-10 m-auto mt-20;
+
+  th,tr,td{
+
+    @apply p-4 text-center text-xl font-semibold text-slate-900 border-collapse border-PrimaryBlack border-2 border-solid;
+
+  }
+
+  th{
+
+    @apply font-bold text-3xl ;
+
+
+  }
+}

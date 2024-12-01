@@ -1,0 +1,12 @@
+.AddUserPage{
+
+    @apply flex flex-col gap-10 w-fit justify-center items-center border-PrimaryBlack border-2 border-solid p-10 m-auto mt-20;
+
+    h1{
+
+        @apply text-3xl font-semibold text-slate-900;
+
+    }
+
+}
+

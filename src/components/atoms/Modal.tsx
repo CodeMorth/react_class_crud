@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 interface ModalProps {
   visible: boolean;
   closeModal: () => void;
@@ -9,25 +11,27 @@ export const Modal: React.FC<ModalProps> = ({
   closeModal,
   children,
 }) => {
-  if (!visible) return null;
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (visible) {
+      modalRef.current?.showModal();
+    } else {
+      modalRef.current?.close();
+    }
+  }, [visible]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-      onClick={closeModal} // Close modal when clicking on the overlay
+    <dialog
+      ref={modalRef}
+      onClose={closeModal}
+      onClick={(e) => {
+        if (e.target === modalRef.current) {
+          closeModal();
+        }
+      }}
     >
-      <div
-        className={`relative rounded-2xl shadow-lg`}
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
-      >
-        <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-          onClick={closeModal}
-        >
-          &times;
-        </button>
-        {children}
-      </div>
-    </div>
+      {children}
+    </dialog>
   );
 };

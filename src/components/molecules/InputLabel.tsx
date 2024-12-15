@@ -1,17 +1,16 @@
 import { Input } from "../atoms/Input";
 import { Label } from "../atoms/Label";
 
-interface InputLabelProps {
+interface InputLabelProps extends React.HTMLProps<HTMLInputElement> {
   labelText: string;
   name: string;
-  type: string;
 }
 
-export const InputLabel = ({ labelText, name, type }: InputLabelProps) => {
+export const InputLabel = ({ labelText, name, ...props }: InputLabelProps) => {
   return (
     <div className="flex flex-col gap-2 ">
-      <Label id={name}>{labelText}</Label>
-      <Input name={name} type={type} />
+      <Label htmlFor={name} id={name}>{labelText}</Label>
+      <Input name={name} {...props} />
     </div>
   );
 };
